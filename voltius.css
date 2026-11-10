@@ -1,0 +1,349 @@
+/* Quiet — pinned to the desktop shell in Voltius 0.66.0. */
+:root.quiet-sidebar {
+  --quiet-sidebar-width: 200px;
+  --quiet-rail-width: 44px;
+  --quiet-title-height: 38px;
+  --t-bg-terminal: #000000 !important;
+  --t-bg-status-bar: #080808 !important;
+  --t-bg-base: #000000 !important;
+  --t-bg-toolbar: #101010 !important;
+  --t-bg-card: #111111 !important;
+  --t-bg-card-hover: #1c1c1c !important;
+  --t-bg-card-avatar: #242824 !important;
+  --t-bg-input: #050505 !important;
+  --t-bg-input-hover: #191919 !important;
+  --t-bg-elevated: #1c1c1c !important;
+  --t-bg-modal: #111111 !important;
+  --t-bg-chrome: #080808 !important;
+  --t-bg-chrome-field: #111111 !important;
+  --t-border: #2b2b2b !important;
+  --t-border-hover: #626862 !important;
+  --t-text-dim: #a2aaa6 !important;
+  --t-text-muted: #a2aaa6 !important;
+  --t-text-secondary: #bdc4c0 !important;
+  --t-text-primary: #e1e5e2 !important;
+  --t-text-bright: #f0f2f0 !important;
+  --t-accent: #a6c494 !important;
+  --t-accent-hover: #bed8ae !important;
+  --t-tab-bg: transparent !important;
+  --t-tab-active-bg: #172015 !important;
+  --t-tab-active-text: #d9e7d0 !important;
+  --t-tab-active-border: #52634c !important;
+  --t-vault-tab-bg: transparent !important;
+  --t-vault-tab-active-bg: #172015 !important;
+  --t-status-connected: #a6c494 !important;
+  --t-status-error: #ee9690 !important;
+  --t-status-warning: #d9be82 !important;
+  --t-status-connecting: #d9be82 !important;
+  --t-text-notice: #b5c6d3 !important;
+  --t-ring: 0 0 0 1px #2b2b2b !important;
+  --t-ring-strong: 0 0 0 1px #626862 !important;
+  --t-highlight: none !important;
+  --t-highlight-strong: none !important;
+  --t-slab-highlight: none !important;
+  --t-slab-shadow: none !important;
+  --t-chrome-shadow: none !important;
+  --t-card-shadow: none !important;
+  --r-sm: 4px !important;
+  --r-md: 6px !important;
+  --r-lg: 6px !important;
+}
+.quiet-sidebar .chrome-frame,
+.quiet-sidebar .chrome-slab,
+.quiet-sidebar .chrome-toolbar,
+.quiet-sidebar .chrome-canvas {
+  background: var(--t-bg-base) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+.quiet-sidebar .surface-glass,
+.quiet-sidebar .surface-glass-solid,
+.quiet-sidebar .surface-glass-modal,
+.quiet-sidebar .surface-float,
+.quiet-sidebar .surface-modal-solid {
+  background: var(--t-bg-card) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: 1px solid var(--t-border) !important;
+  border-radius: 4px !important;
+}
+.quiet-sidebar :is(button, input, select, textarea) { border-radius: 4px !important; }
+.quiet-sidebar :is(button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--t-accent) !important;
+  outline-offset: 2px;
+}
+.quiet-sidebar :is(button, input, select, textarea, [role="combobox"]),
+.quiet-sidebar button svg { transition: none !important; }
+.quiet-sidebar .animate-fadeIn { animation: none !important; }
+.quiet-sidebar .animate-fadeOut { animation: none !important; opacity: 0 !important; pointer-events: none !important; }
+.quiet-sidebar .surface-float[style*="width: 0px"] { visibility: hidden; }
+.quiet-sidebar .btn,
+.quiet-sidebar .btn:hover,
+.quiet-sidebar .btn:active {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+.quiet-sidebar .form-input {
+  border-color: var(--t-border) !important;
+  background: var(--t-bg-input);
+  box-shadow: none !important;
+}
+.quiet-sidebar .form-input:hover { border-color: var(--t-border-hover) !important; }
+.quiet-sidebar .form-input:focus { border-color: var(--t-accent) !important; }
+.quiet-sidebar .chrome-toolbar {
+  min-height: 48px;
+  padding: 8px 16px !important;
+  gap: 8px;
+}
+.quiet-sidebar .chrome-toolbar button {
+  height: 32px;
+  min-height: 32px;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  border-color: var(--t-border) !important;
+  box-shadow: none !important;
+}
+.quiet-sidebar .chrome-toolbar button svg { width: 16px; height: 16px; }
+.quiet-sidebar .chrome-toolbar button span { letter-spacing: 0; font-weight: inherit; }
+.quiet-sidebar .chrome-toolbar button.w-8 { padding: 0; }
+.quiet-sidebar .chrome-toolbar .relative.flex.gap-0\.5 { height: 32px; box-sizing: border-box; }
+.quiet-sidebar .chrome-toolbar .relative.flex.gap-0\.5 button { height: 26px; min-height: 26px; padding-top: 0; padding-bottom: 0; }
+.quiet-sidebar .chrome-toolbar .pointer-events-none { transition: none !important; box-shadow: none !important; }
+.quiet-sidebar .chrome-toolbar .relative.flex > button:first-of-type:has(+ button) { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
+.quiet-sidebar .chrome-toolbar .relative.flex > button + button { border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; }
+.quiet-sidebar .chrome-toolbar .surface-float button,
+.quiet-sidebar .surface-float > button {
+  height: auto;
+  min-height: 32px;
+  padding: 7px 10px;
+  font-size: 13px;
+  line-height: 18px;
+}
+.quiet-sidebar .ripple { display: none !important; }
+.quiet-sidebar button:disabled { opacity: .45; }
+.quiet-sidebar ::selection { background: #485543; color: #f0f2f0; }
+.quiet-sidebar :is(input, textarea) { caret-color: var(--t-accent); }
+.quiet-sidebar * { scrollbar-color: #505652 transparent; scrollbar-width: thin; }
+/* One visible rail in every view. Native controls remain available for actions. */
+.quiet-sidebar [data-quiet-native-rail] {
+  position: fixed;
+  inset: var(--quiet-title-height) auto 0 0;
+  width: var(--quiet-rail-width) !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+.quiet-sidebar [data-quiet-rail] {
+  position: fixed;
+  inset: var(--quiet-title-height) auto 0 0;
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--quiet-rail-width);
+  padding: 8px 0;
+  gap: 8px;
+  border-right: 1px solid var(--t-border);
+  background: var(--t-bg-terminal);
+  box-sizing: border-box;
+}
+.quiet-sidebar:not(:has([data-shell-body])) [data-quiet-rail] { display: none; }
+.quiet-sidebar .quiet-rail-home,
+.quiet-sidebar .quiet-rail-vaults,
+.quiet-sidebar .quiet-rail-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.quiet-sidebar .quiet-rail-home { padding-bottom: 8px; border-bottom: 1px solid var(--t-border); }
+.quiet-sidebar .quiet-rail-vaults { flex: 1; min-height: 0; overflow-y: auto; }
+.quiet-sidebar [data-quiet-rail] button {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 4px !important;
+  background: transparent;
+  color: var(--t-text-secondary);
+  box-shadow: none;
+  font: inherit;
+  font-weight: 500;
+}
+.quiet-sidebar [data-quiet-rail] button:hover { background: var(--t-bg-elevated); color: var(--t-text-bright); }
+.quiet-sidebar [data-quiet-rail] button[aria-current="true"] { background: var(--t-tab-active-bg); color: var(--t-tab-active-text); }
+.quiet-sidebar [data-quiet-rail] svg { width: 18px !important; height: 18px !important; flex: none; }
+.quiet-sidebar .quiet-rail-home svg { width: auto !important; height: 22px !important; }
+.quiet-sidebar [data-quiet-title] {
+  height: var(--quiet-title-height) !important;
+  min-height: var(--quiet-title-height);
+  justify-content: flex-end;
+  border-bottom: 1px solid var(--t-border);
+  background: var(--t-bg-terminal) !important;
+}
+.quiet-sidebar [data-quiet-title]::before {
+  content: "Voltius";
+  flex: 1;
+  padding-left: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--t-text-muted);
+}
+.quiet-sidebar [data-quiet-title] > :not([data-quiet-navigation]) button { max-height: 28px; }
+.quiet-sidebar [data-shell-body] { margin-left: calc(var(--quiet-sidebar-width) + var(--quiet-rail-width)); }
+.quiet-sidebar [data-quiet-navigation] {
+  position: fixed !important;
+  inset: var(--quiet-title-height) auto 0 var(--quiet-rail-width);
+  z-index: 20;
+  width: var(--quiet-sidebar-width);
+  height: auto !important;
+  flex-direction: column;
+  align-items: stretch !important;
+  gap: 4px !important;
+  padding: 12px 8px 8px !important;
+  background: var(--t-bg-terminal);
+  border-right: 1px solid var(--t-border);
+  font-size: 13px;
+}
+.quiet-sidebar [data-quiet-navigation] > button {
+  margin: 0 !important;
+  height: 38px !important;
+  padding: 0 10px !important;
+  font-size: 13px;
+  border: 0 !important;
+  border-left: 1px solid transparent !important;
+  border-radius: 0 !important;
+}
+.quiet-sidebar [data-quiet-navigation] > button:hover { background: var(--t-bg-elevated) !important; }
+.quiet-sidebar [data-quiet-navigation] > button[data-quiet-selected="true"] {
+  background: var(--t-tab-active-bg) !important;
+  color: var(--t-tab-active-text) !important;
+  border-left-color: var(--t-accent) !important;
+}
+.quiet-sidebar [data-quiet-navigation] > button > svg { width: 16px; height: 16px; }
+.quiet-sidebar [data-quiet-navigation] > button:first-child:not(:has(> span))::after { content: "Vaults"; }
+.quiet-sidebar [data-quiet-navigation] > button:nth-child(2):not(:has(> span))::after { content: "SFTP"; }
+.quiet-sidebar [data-quiet-navigation] > div.w-px { display: none; }
+.quiet-sidebar [data-quiet-group] {
+  flex-direction: column;
+  align-items: stretch !important;
+  height: auto !important;
+  min-height: 0;
+  margin-top: 12px;
+  border-radius: 0 !important;
+  border-top: 1px solid var(--t-border);
+  padding-top: 8px;
+}
+.quiet-sidebar [data-quiet-tabs] {
+  flex-direction: column;
+  align-items: stretch !important;
+  flex: 1;
+  height: auto !important;
+  overflow: hidden auto !important;
+  gap: 0 !important;
+  mask-image: none !important;
+}
+.quiet-sidebar [data-titlebar-key] {
+  width: 100%;
+  height: 38px !important;
+  min-height: 38px;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-align: left;
+  border: 0 !important;
+  border-left: 1px solid transparent !important;
+  border-radius: 0 !important;
+  padding-left: 10px;
+}
+.quiet-sidebar [data-titlebar-key] > .truncate { flex: 1; max-width: none; }
+.quiet-sidebar [data-titlebar-key] > .opacity-0 { opacity: .55; }
+.quiet-sidebar [data-titlebar-key]:hover { background: var(--t-bg-elevated) !important; }
+.quiet-sidebar [data-titlebar-key][data-strip-active="true"] {
+  border-left-color: var(--t-accent) !important;
+  background: var(--t-tab-active-bg) !important;
+}
+.quiet-sidebar [data-titlebar-key]:focus-visible { outline-offset: -2px; }
+.quiet-sidebar [data-quiet-group] > button {
+  order: -1;
+  align-self: flex-start;
+  width: 100%;
+  height: 32px !important;
+  min-height: 32px;
+  margin: 0 0 8px;
+  justify-content: flex-start;
+  padding-left: 8px;
+  border-radius: 0 !important;
+}
+.quiet-sidebar [data-quiet-group] > button::after { content: "New session"; margin-left: 8px; font-size: 12px; }
+.quiet-sidebar [data-quiet-home] { max-width: 1120px; margin: 0; padding: 28px 32px; }
+.quiet-sidebar [data-quiet-home] h1 { font-size: 20px; font-weight: 550; margin-bottom: 16px; }
+.quiet-sidebar [data-quiet-home] h2 { text-transform: none; letter-spacing: 0; font-size: 13px; margin-bottom: 10px; }
+.quiet-sidebar [data-quiet-home] .uppercase { text-transform: none; letter-spacing: 0; }
+.quiet-sidebar [data-quiet-home] > div:first-child { margin-bottom: 20px; }
+.quiet-sidebar [data-quiet-home] > div:first-child > button { height: 38px; max-width: 680px; }
+.quiet-sidebar [data-quiet-home] > div:first-child > div > div {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 2px 14px 2px 0;
+  gap: 6px;
+}
+.quiet-sidebar [data-quiet-home] .grid { display: flex; flex-direction: column; gap: 0; }
+.quiet-sidebar [data-quiet-home] .grid > .surface-glass {
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--t-border) !important;
+  border-radius: 0 !important;
+  padding: 14px 0;
+  gap: 8px;
+}
+.quiet-sidebar [data-quiet-home] .grid > .surface-glass > p { text-align: left; padding: 0 0 0 21px; }
+/* Dock terminal tools like a terminal sidebar, without floating-card animation. */
+.quiet-sidebar :is([data-testid="right-panel"], [data-testid="host-sessions-panel"]) { transition: none !important; }
+.quiet-sidebar :is([data-testid="right-panel-card"], [data-testid="host-sessions-panel-card"]) {
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+  border-width: 0 !important;
+  transition: none !important;
+  box-shadow: none !important;
+  background: var(--t-bg-base);
+}
+.quiet-sidebar [data-testid="right-panel-card"] { border-left: 1px solid var(--t-border) !important; }
+.quiet-sidebar [data-testid="host-sessions-panel-card"] { border-right: 1px solid var(--t-border) !important; }
+.quiet-sidebar [data-testid="right-panel"]:has([data-testid="right-panel-status-filler"]) > aside,
+.quiet-sidebar [data-testid="host-sessions-panel"]:has([data-testid="host-sessions-panel-status-filler"]) > aside { bottom: 24px !important; }
+.quiet-sidebar .surface-modal-solid h3 { text-transform: none; letter-spacing: 0; font-weight: 600; }
+.quiet-sidebar [data-pane-id] { border-radius: 0 !important; }
+@media (max-width: 900px) {
+  :root.quiet-sidebar { --quiet-sidebar-width: 176px; }
+  .quiet-sidebar [data-quiet-home] { padding: 24px; }
+}
+/* Small windows keep the native horizontal strip rather than crowding terminals. */
+@media (max-width: 680px) {
+  .quiet-sidebar [data-shell-body] { margin-left: var(--quiet-rail-width); }
+  .quiet-sidebar [data-quiet-title] { padding-left: var(--quiet-rail-width); }
+  .quiet-sidebar [data-quiet-title]::before { display: none; }
+  .quiet-sidebar [data-quiet-navigation] { position: static !important; width: auto; flex-direction: row; height: 38px !important; padding: 0 4px !important; border: 0; }
+  .quiet-sidebar [data-quiet-group] { flex-direction: row; margin: 0; padding: 0; border: 0; }
+  .quiet-sidebar [data-quiet-tabs] { flex-direction: row; overflow: auto hidden !important; }
+  .quiet-sidebar [data-titlebar-key] { width: auto; }
+  .quiet-sidebar [data-quiet-group] > button { width: 28px; margin: 0; }
+  .quiet-sidebar [data-quiet-group] > button::after { display: none; }
+  .quiet-sidebar [data-quiet-home] { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quiet-sidebar button { transition: none !important; }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "quiet-voltius",
+  "version": "1.4.1",
+  "private": true,
+  "description": "A compact, black interface for Voltius with vertical tabs.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "node check.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "29.1.1"
+  }
+}
