@@ -3,7 +3,7 @@ export default function register(api) {
   if (!api.isActive()) return;
   const root = document.documentElement;
   root.classList.add("quiet-sidebar");
-  const attributes = ["data-quiet-title", "data-quiet-navigation", "data-quiet-group", "data-quiet-tabs", "data-quiet-home", "data-quiet-native-rail", "data-quiet-selected"];
+  const attributes = ["data-quiet-title", "data-quiet-navigation", "data-quiet-group", "data-quiet-tabs", "data-quiet-home", "data-quiet-recent-host", "data-quiet-recent-list", "data-quiet-recent-section", "data-quiet-vault-section", "data-quiet-native-rail", "data-quiet-selected"];
   let lastActive;
   let pendingAction;
   let disposed = false;
@@ -160,7 +160,16 @@ export default function register(api) {
     const group = navigation?.querySelector("div.flex-1");
     mark(group, "data-quiet-group");
     mark(group?.firstElementChild, "data-quiet-tabs");
-    mark(shell.querySelector(".chrome-canvas > .max-w-4xl"), "data-quiet-home");
+    const home = shell.querySelector(".chrome-canvas > .max-w-4xl");
+    mark(home, "data-quiet-home");
+    for (const card of home?.querySelectorAll(".surface-glass.group") ?? []) {
+      mark(card, "data-quiet-recent-host");
+      mark(card.parentElement, "data-quiet-recent-list");
+      let section = card;
+      while (section.parentElement && section.parentElement !== home) section = section.parentElement;
+      mark(section, "data-quiet-recent-section");
+    }
+    for (const grid of home?.querySelectorAll(".grid") ?? []) mark(grid.parentElement, "data-quiet-vault-section");
     const native = nativeRail();
     if (native) syncRail(native);
     else if (!initialized && !controls.size && !pendingAction) {

@@ -359,12 +359,19 @@
   border-radius: 0 !important;
 }
 .quiet-sidebar [data-quiet-group] > button::after { content: "New session"; margin-left: 8px; font-size: 12px; }
-.quiet-sidebar [data-quiet-home] { max-width: 1120px; margin: 0; padding: 28px 32px; }
+.quiet-sidebar [data-quiet-home] {
+  width: 100%; max-width: 1520px; margin: 0 auto; padding: 24px 28px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 32px; align-items: start;
+}
+.quiet-sidebar [data-quiet-home] > div { grid-column: 1 / -1; min-width: 0; margin-bottom: 0; }
+.quiet-sidebar [data-quiet-home] > :is([data-quiet-recent-section], [data-quiet-vault-section]) { grid-column: auto; }
+/* Team sessions stays available below the primary host lists. */
+.quiet-sidebar [data-quiet-home] > div:nth-child(3) { order: 1; }
 .quiet-sidebar [data-quiet-home] h1 { font-size: 20px; font-weight: 550; margin-bottom: 16px; }
 .quiet-sidebar [data-quiet-home] h2 { text-transform: none; letter-spacing: 0; font-size: 13px; margin-bottom: 10px; }
 .quiet-sidebar [data-quiet-home] .uppercase { text-transform: none; letter-spacing: 0; }
-.quiet-sidebar [data-quiet-home] > div:first-child { margin-bottom: 20px; }
-.quiet-sidebar [data-quiet-home] > div:first-child > button { height: 38px; max-width: 680px; }
+.quiet-sidebar [data-quiet-home] > div:first-child > button { height: 38px; margin-bottom: 12px; }
 .quiet-sidebar [data-quiet-home] > div:first-child > div > div {
   background: transparent !important;
   border: 0 !important;
@@ -381,6 +388,35 @@
   gap: 8px;
 }
 .quiet-sidebar [data-quiet-home] .grid > .surface-glass > p { text-align: left; padding: 0 0 0 21px; }
+.quiet-sidebar [data-quiet-recent-list] { flex-direction: column; gap: 0; min-width: 0; }
+.quiet-sidebar [data-quiet-recent-section] > .flex.items-center.gap-2 { display: block; position: relative; }
+.quiet-sidebar [data-quiet-recent-section] > .flex.items-center.gap-2 > button { position: absolute; bottom: -30px; }
+.quiet-sidebar [data-quiet-recent-section] > .flex.items-center.gap-2 > button:first-child { left: 0; }
+.quiet-sidebar [data-quiet-recent-section] > .flex.items-center.gap-2 > button:last-child { right: 0; }
+.quiet-sidebar [data-quiet-recent-host] {
+  width: 100% !important; min-width: 0; min-height: 46px;
+  display: grid; grid-template-columns: 28px minmax(0, 1fr) minmax(90px, .8fr);
+  gap: 10px; padding: 8px 28px 8px 0;
+  border: 0 !important; border-bottom: 1px solid var(--t-border) !important;
+  background: transparent !important; border-radius: 0 !important;
+}
+.quiet-sidebar [data-quiet-recent-host]:hover { background: var(--t-bg-card) !important; }
+.quiet-sidebar [data-quiet-recent-host] > span { min-width: 0; text-align: left; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quiet-sidebar [data-quiet-recent-host] > span:first-of-type { font-size: 13px; }
+.quiet-sidebar [data-quiet-recent-host] > button { top: 50%; right: 2px; transform: translateY(-50%); }
+.quiet-sidebar [data-quiet-recent-host]:focus-within > button { opacity: 1 !important; }
+.quiet-sidebar [data-quiet-home] .select-none.shrink-0:has(> svg) {
+  background: var(--t-bg-card) !important; box-shadow: none !important;
+  border: 1px solid var(--t-border); border-radius: 4px !important;
+  color: var(--t-text-secondary) !important;
+}
+.quiet-sidebar [data-quiet-recent-host] > .relative > .select-none { width: 28px !important; height: 28px !important; }
+.quiet-sidebar [data-quiet-vault-section] .grid > .surface-glass { padding-top: 0; }
+.quiet-sidebar [data-quiet-vault-section] .grid > .surface-glass > button { min-height: 32px; }
+.quiet-sidebar [data-quiet-vault-section] .grid > .surface-glass > .flex > button { min-height: 38px; }
+@media (max-width: 1150px) {
+  .quiet-sidebar [data-quiet-home] { grid-template-columns: minmax(0, 1fr); }
+}
 /* Dock terminal tools like a terminal sidebar, without floating-card animation. */
 .quiet-sidebar :is([data-testid="right-panel"], [data-testid="host-sessions-panel"]) { transition: none !important; }
 .quiet-sidebar :is([data-testid="right-panel-card"], [data-testid="host-sessions-panel-card"]) {

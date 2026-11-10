@@ -1,7 +1,7 @@
 {
   "id": "quiet-sidebar",
   "name": "Quiet",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "minAppVersion": "0.66.0",
   "description": "Tabby-inspired black interface with vertical session tabs. Designed for Voltius 0.66.0.",
   "author": "rejarevaldy",

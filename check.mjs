@@ -26,6 +26,11 @@ document.querySelector('.select-none button').onclick=()=>body.prepend(native);
 const cleanup=register({isActive:()=>true});
 assert(document.querySelector('[data-quiet-tabs]'));
 assert(document.querySelector('[data-quiet-home]'));
+const populatedHome=document.querySelector('[data-quiet-home]');
+populatedHome.innerHTML='<section><div><div class="flex"><div class="surface-glass group"><button>Pin</button></div></div></div></section><section><div class="grid"><div class="surface-glass">Vault</div></div></section>';
+await new Promise(r=>setTimeout(r,35));
+assert(populatedHome.querySelector('[data-quiet-recent-section] [data-quiet-recent-list] [data-quiet-recent-host]'),'populated recent hosts receive scoped list styling');
+assert(populatedHome.querySelector('[data-quiet-vault-section] > .grid'),'vault section remains separate from recent hosts');
 const clonedSvg=document.querySelector('[data-quiet-rail] svg');
 for (const attribute of ['fill','filter']) {
  const reference=clonedSvg.querySelector('path').getAttribute(attribute).slice(5,-1);
