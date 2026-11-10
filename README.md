@@ -3,6 +3,7 @@
 A black, compact interface for [Voltius](https://github.com/VoltiusApp/voltius), inspired by Tabby.
 
 - Vertical session tabs with a thin active indicator.
+- Centered New session picker with a scrollable list that fits the window.
 - Vault navigation stays visible when switching to a terminal.
 - Flat toolbars, menus, and docked tool panels.
 - Uses your chosen application and terminal fonts.

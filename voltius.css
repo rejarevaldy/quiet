@@ -327,6 +327,20 @@
 .quiet-sidebar [data-testid="host-sessions-panel"]:has([data-testid="host-sessions-panel-status-filler"]) > aside { bottom: 24px !important; }
 .quiet-sidebar .surface-modal-solid h3 { text-transform: none; letter-spacing: 0; font-weight: 600; }
 .quiet-sidebar [data-pane-id] { border-radius: 0 !important; }
+/* NewSessionPopover's anchor positioning assumes horizontal tabs in 0.66.0. */
+.quiet-sidebar .fixed.surface-glass-solid.w-\[22rem\]:has(> div > input) {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: min(560px, calc(100vw - 32px)) !important;
+  max-height: calc(100dvh - 32px);
+  display: flex;
+  flex-direction: column;
+}
+.quiet-sidebar .fixed.surface-glass-solid.w-\[22rem\]:has(> div > input) > .overflow-y-auto {
+  max-height: min(360px, calc(100dvh - 100px)) !important;
+  min-height: 0;
+}
 @media (max-width: 900px) {
   :root.quiet-sidebar { --quiet-sidebar-width: 176px; }
   .quiet-sidebar [data-quiet-home] { padding: 24px; }

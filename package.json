@@ -1,6 +1,6 @@
 {
   "name": "quiet-voltius",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "private": true,
   "description": "A compact, black interface for Voltius with vertical tabs.",
   "type": "module",
