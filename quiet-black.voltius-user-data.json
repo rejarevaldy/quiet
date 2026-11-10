@@ -1,0 +1,82 @@
+{
+  "type": "voltius-user-data",
+  "version": 2,
+  "exported_at": "2026-11-10T00:00:00.000Z",
+  "sections": {
+    "themes": {
+      "updated_at": "2026-11-10T00:00:00.000Z",
+      "data": {
+        "activeThemeId": "quiet-black",
+        "customThemes": [
+          {
+            "id": "quiet-black",
+            "name": "Quiet Black",
+            "builtIn": false,
+            "uiFontFamily": "system-ui, sans-serif",
+            "uiFontSize": 13,
+            "terminalFontFamily": "'JetBrains Mono', monospace",
+            "terminalFontSize": 14,
+            "ui": {
+              "bgTerminal": "#000000",
+              "bgStatusBar": "#080808",
+              "bgBase": "#000000",
+              "bgToolbar": "#101010",
+              "bgCard": "#111111",
+              "bgCardHover": "#1c1c1c",
+              "bgCardAvatar": "#242824",
+              "bgInput": "#050505",
+              "bgInputHover": "#191919",
+              "bgElevated": "#1c1c1c",
+              "bgModal": "#111111",
+              "border": "#2b2b2b",
+              "borderHover": "#626862",
+              "textDim": "#a2aaa6",
+              "textMuted": "#a2aaa6",
+              "textSecondary": "#bdc4c0",
+              "textPrimary": "#e1e5e2",
+              "textBright": "#f0f2f0",
+              "accent": "#a6c494",
+              "accentHover": "#bed8ae",
+              "tabBg": "transparent",
+              "tabActiveBg": "#172015",
+              "tabActiveText": "#d9e7d0",
+              "tabActiveBorder": "#52634c",
+              "vaultTabBg": "transparent",
+              "vaultTabActiveBg": "#1c1c1c",
+              "statusConnected": "#a6c494",
+              "statusError": "#ee9690",
+              "statusConnecting": "#d9be82",
+              "statusWarning": "#d9be82",
+              "textNotice": "#b5c6d3"
+            },
+            "terminal": {
+              "background": "#000000",
+              "foreground": "#d5d8d3",
+              "cursor": "#b8ccaa",
+              "selectionBackground": "#364331",
+              "black": "#161616",
+              "red": "#cf8983",
+              "green": "#a6bc93",
+              "yellow": "#cebb8b",
+              "blue": "#91a7bc",
+              "magenta": "#b59ebc",
+              "cyan": "#8eb9b3",
+              "white": "#c9cdc6",
+              "brightBlack": "#858b82",
+              "brightRed": "#e5a29b",
+              "brightGreen": "#bed3aa",
+              "brightYellow": "#e1ce9c",
+              "brightBlue": "#a7bfd6",
+              "brightMagenta": "#cdb4d5",
+              "brightCyan": "#a2d0c9",
+              "brightWhite": "#eff1ec"
+            },
+            "terminalLineHeight": 1.2
+          }
+        ],
+        "mode": "manual",
+        "darkThemeId": "quiet-black"
+      }
+    }
+  }
+}

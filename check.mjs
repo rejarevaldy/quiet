@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, mkdtemp, mkdir, writeFile, readdir, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { JSDOM } from 'jsdom';
 const dom = new JSDOM('<!doctype html><body><div class="chrome-frame"><div class="select-none"><div><button>Vaults</button><button>SFTP</button><div class="flex-1"><div><button data-strip-active="false">Session</button></div><button>New</button></div></div></div><div data-shell-body><div class="chrome-canvas"><div class="max-w-4xl"></div></div></div></div></body>', {pretendToBeVisual:true});
 for(const key of ['document','MutationObserver','MouseEvent','requestAnimationFrame','cancelAnimationFrame']) globalThis[key]=typeof dom.window[key]==='function'?dom.window[key].bind(dom.window):dom.window[key];
@@ -88,4 +91,28 @@ assert.equal(restored,1,'reloading in a terminal restores the selected view');
 assert(document.querySelector('[data-quiet-rail] button[title="Personal"]'),'terminal reload populates Personal without a manual vault visit');
 cleanupReload();
 dom.window.close();
+const installRoot=await mkdtemp(join(tmpdir(),'quiet-install-'));
+try {
+ const config=join(installRoot,'config');
+ const destination=join(config,'plugins','quiet-sidebar');
+ await mkdir(destination,{recursive:true});
+ await writeFile(join(destination,'index.js'),'previous plugin');
+ await writeFile(join(destination,'keep.txt'),'user file');
+ await writeFile(join(config,'theme.json'),'existing theme');
+ const run=()=>execFileSync('sh',[new URL('./install.sh',import.meta.url).pathname],{env:{...process.env,QUIET_PLUGIN_DIR:destination},encoding:'utf8'});
+ run();
+ const backups=await readdir(join(config,'appearance-backups'));
+ assert.equal(await readFile(join(config,'appearance-backups',backups[0],'index.js'),'utf8'),'previous plugin','installer preserves the old plugin');
+ for(const file of ['manifest.json','index.js','voltius.css']) assert.equal(await readFile(join(destination,file),'utf8'),await readFile(new URL(file,import.meta.url),'utf8'));
+ assert.equal(await readFile(join(destination,'keep.txt'),'utf8'),'user file');
+ assert.equal(await readFile(join(config,'theme.json'),'utf8'),'existing theme','installer preserves theme settings');
+ run();
+ assert.equal((await readdir(join(config,'appearance-backups'))).length,2,'repeated installs keep separate backups');
+ const bundle=JSON.parse(await readFile(new URL('./quiet-black.voltius-user-data.json',import.meta.url),'utf8'));
+ const theme=JSON.parse(await readFile(new URL('./quiet-black.json',import.meta.url),'utf8'));
+ assert.equal(bundle.type,'voltius-user-data');
+ assert.equal(bundle.version,2);
+ assert.deepEqual(bundle.sections.themes.data.customThemes,[theme]);
+} finally { await rm(installRoot,{recursive:true,force:true}); }
 console.log('PASS: disabled load, shell annotation, session reveal, node identity, remount, persistent vault/settings actions, context menu, cleanup.');
+console.log('PASS: installer backups, repeated installs, existing settings, importable theme bundle.');

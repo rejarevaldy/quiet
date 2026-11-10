@@ -1,53 +1,92 @@
 # Quiet
 
-A compact, black interface for **Voltius 0.66.0**, inspired by Tabby. Vertical tabs, persistent vault navigation, and flat controls. No build step or runtime dependencies.
+A black, compact interface for [Voltius](https://github.com/VoltiusApp/voltius), inspired by Tabby.
 
-Download this repository, then copy `manifest.json`, `index.js`, and `voltius.css` into
-`~/.config/voltius/plugins/quiet-sidebar/`. Open Settings → Plugins → Installed and
-choose **Scan for local plugins**, or restart Voltius.
+- Vertical session tabs with a thin active indicator.
+- Vault navigation stays visible when switching to a terminal.
+- Flat toolbars, menus, and docked tool panels.
+- Uses your chosen application and terminal fonts.
 
-The internal plugin ID remains `quiet-sidebar` so existing installations keep their settings. Its displayed name is **Quiet**.
+Built for **Voltius 0.66.0 on Linux**. No build step or runtime dependencies.
 
-Vault navigation stays available in terminals and its position stays fixed between
-views. Version 1.4 uses one persistent rail with stable controls, rather than
-swapping the native rail and a snapshot. It forwards actions to Voltius's own controls.
-Reloading while a terminal or SFTP view is open populates the controls and restores
-the selected view. Later plugin changes can be applied with Settings → Plugins → Installed
-→ Quiet → Reload plugin, without restarting the application.
+## Install
 
-Change fonts in Settings → Appearance → Quiet Black → Edit (pencil). The native
-theme editor has separate App Font and Terminal Font controls, font sizes, and
-terminal line height. Save to apply. Quiet inherits the chosen font.
+```sh
+git clone https://github.com/rejarevaldy/quiet.git
+cd quiet
+sh install.sh
+```
 
-The design follows Tabby's compact tab layout: 38px flat session rows in a 200px
-sidebar, with a thin active edge. Local and SSH sessions share the same tab style.
-Terminal tool panels dock flush to the content; popovers, settings and file tools
-use opaque, flat surfaces. The user-selected font and terminal palette stay intact.
-Vaults, SFTP and sessions share the same selected treatment. The rail uses 32px
-controls without copied hover pips or inline native styles. Menus and toolbar
-controls stay flat; New session sits above the tabs so its popup fits on screen.
+In Voltius, open **Settings → Plugins → Installed → Scan for local plugins**.
+Quiet should appear in the installed list. If its switch is off, turn it on.
 
-The plugin flattens the app chrome, changes UI colors to black and muted green,
-and lays out the original session tabs vertically. It keeps React nodes, click
-handlers, menus, rename fields, and session close actions in place. It does not
-read credentials, change hosts, run terminal commands, or change the terminal palette.
+The installer copies three files to `${XDG_CONFIG_HOME:-~/.config}/voltius/plugins/quiet-sidebar/`.
+The internal ID stays `quiet-sidebar` for compatibility with earlier installations.
+It backs up existing plugin files before replacing them and leaves your saved hosts,
+credentials, themes, and terminal palette alone.
 
-`quiet-black.json` is the companion theme. It uses a pure-black terminal, muted ANSI
-colors, 13px system UI text, and 14px JetBrains Mono terminal text. Import it through
-the theme editor when installing this bundle on another machine. Select Quiet Black after importing it. Installing the plugin does not change your saved terminal palette.
+For a different location:
 
-To remove it, uninstall Quiet in Settings → Plugins, or close Voltius,
-remove its `quiet-sidebar` plugin folder, then reopen Voltius. UI color overrides
-apply while the plugin is active; your saved theme remains unchanged.
+```sh
+QUIET_PLUGIN_DIR=/path/to/voltius/plugins/quiet-sidebar sh install.sh
+```
 
-The layout depends on 0.66.0 shell markup. Recheck after upgrades. Native tab drag
-ordering still assumes a horizontal strip; use session clicks and context menus
-in this version. Vertical drag ordering needs an app source change.
+## Update without restarting
+
+```sh
+git pull --ff-only
+sh install.sh
+```
+
+In **Settings → Plugins → Installed**, click the circular-arrow **Reload plugin** button
+on the Quiet row. If the button is missing, click **Scan for local plugins** first.
+The scan registers manually installed plugins so Voltius can show their reload controls.
+
+## Optional: Quiet Black terminal theme
+
+Quiet changes the application interface. The terminal palette remains your choice.
+
+To use the matching palette, first export your existing themes from
+**Settings → Appearance → Export All**. Then choose **Import**, open
+[`quiet-black.voltius-user-data.json`](quiet-black.voltius-user-data.json), and apply the Themes section.
+This selects Quiet Black and **replaces the custom theme list** with that theme;
+keep your export if you want to restore other custom themes.
+
+[`quiet-black.json`](quiet-black.json) is the raw theme definition for editing;
+it is not the file to select in Voltius's Import dialog.
+
+To change fonts, use **Settings → Appearance → Quiet Black → Edit**.
+The editor has separate controls for the application font, terminal font, size,
+and terminal line height.
+
+## Remove
+
+Use **Settings → Plugins → Installed → Quiet → Uninstall plugin**.
+If you also imported Quiet Black, select another theme under Appearance.
+Plugin backups are stored under `voltius/appearance-backups/` in the configuration directory.
+
+## Compatibility and limits
+
+Quiet depends on Voltius 0.66.0's desktop markup. Other versions and operating systems
+have not been verified. Check the layout after upgrading Voltius.
+
+Vertical drag reordering still needs a change in Voltius itself. Clicks, rename,
+close, and context menus use the application's existing actions.
+
+The automated checks cover plugin lifecycle, stable controls, SVG references,
+view restoration, and installer backups. Browser layout checks used real Voltius
+components with a mocked backend. They do not establish live SSH/SFTP behavior.
 
 ## Development
 
-Use Node.js 20.19+, 22.13+, or 24+. Run `npm ci` followed by `npm test`. The checks cover control identity, view switching, SVG references, cleanup, and reload from an existing terminal. Browser previews used real Voltius components with a mocked backend; real SSH/SFTP sessions and desktop WebKit behavior still need verification.
+Use Node.js 20.19+, 22.13+, or 24+:
+
+```sh
+npm ci
+npm test
+```
 
 ## License
 
-MIT. See [NOTICE](NOTICE) for the Lucide icon license. Voltius is a separate project; this repository contains only the plugin.
+[MIT](LICENSE). Utility icon geometry is from Lucide; see [NOTICE](NOTICE).
+Voltius is a separate project and is not included in this repository.
