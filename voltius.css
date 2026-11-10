@@ -87,12 +87,86 @@
   box-shadow: none !important;
 }
 .quiet-sidebar .form-input {
-  border-color: var(--t-border) !important;
+  border: 1px solid var(--t-border) !important;
   background: var(--t-bg-input);
   box-shadow: none !important;
 }
 .quiet-sidebar .form-input:hover { border-color: var(--t-border-hover) !important; }
 .quiet-sidebar .form-input:focus { border-color: var(--t-accent) !important; }
+/* Shared object lists and editors use the same flat surfaces as the shell. */
+.quiet-sidebar :is([data-card], [data-folder-card], [data-connection-id]) {
+  border-radius: 4px !important;
+  border-width: 1px !important;
+  border-bottom-color: var(--t-border) !important;
+  background: var(--t-bg-base) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: none !important;
+}
+.quiet-sidebar :is([data-card], [data-folder-card], [data-connection-id]):hover {
+  background: var(--t-bg-card) !important;
+}
+.quiet-sidebar :is([data-card], [data-connection-id]):has(> .pointer-events-none) {
+  background: var(--t-tab-active-bg) !important;
+}
+.quiet-sidebar :is([data-card], [data-connection-id]) > .pointer-events-none {
+  inset: -1px !important;
+  border-width: 1px !important;
+  border-radius: 4px !important;
+}
+.quiet-sidebar [data-connection-id].py-2\.5 {
+  min-height: 44px;
+  padding: 8px 12px;
+}
+.quiet-sidebar [data-connection-id] > p.w-52 {
+  width: clamp(120px, 18vw, 208px);
+  flex-shrink: 1;
+  min-width: 0;
+}
+.quiet-sidebar [data-panel-shell] {
+  background: var(--t-bg-base) !important;
+  border-left: 1px solid var(--t-border);
+  box-shadow: none !important;
+}
+.quiet-sidebar [data-panel-shell] > .shrink-0 {
+  background: var(--t-bg-base) !important;
+  border-bottom-color: var(--t-border) !important;
+}
+.quiet-sidebar [data-form-section] {
+  background: transparent !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--t-border) !important;
+  box-shadow: none !important;
+  overflow: visible;
+}
+.quiet-sidebar [data-form-section-title] {
+  padding: 12px 0 8px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--t-text-primary);
+  border-bottom: 0;
+}
+.quiet-sidebar [data-form-section-body] { padding: 4px 0 16px; }
+.quiet-sidebar [data-panel-shell] .form-input { min-height: 34px; }
+.quiet-sidebar [data-panel-shell] textarea.form-input { min-height: 80px; }
+.quiet-sidebar :is(.rounded-xl, .rounded-2xl) { border-radius: 4px !important; }
+.quiet-sidebar .btn { font-weight: 500; letter-spacing: 0; }
+.quiet-sidebar .btn-primary {
+  color: #0b1008 !important;
+  background: var(--t-accent) !important;
+  border: 1px solid var(--t-accent) !important;
+}
+.quiet-sidebar .btn-primary:hover:not(:disabled) { background: var(--t-accent-hover) !important; }
+.quiet-sidebar .btn-secondary {
+  background: var(--t-bg-base) !important;
+  border: 1px solid var(--t-border) !important;
+}
+.quiet-sidebar .btn-secondary:hover:not(:disabled) { background: var(--t-bg-card-hover) !important; }
 .quiet-sidebar .chrome-toolbar {
   min-height: 48px;
   padding: 8px 16px !important;
